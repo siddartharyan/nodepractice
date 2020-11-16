@@ -62,10 +62,3 @@ app.patch("/school/student/:id", (req, res) => {
         res.send(result);
     })
 })
-
-
-app.put("/school/student/:id", (req, res) => {
-    const id = req.params.id;
-    Student.findByIdAndUpdate(id, req.body, { upsert: true }).then((result) => res.send(result));
-})
-app.listen(3000);
