@@ -1,0 +1,15 @@
+const express = require('express');
+const mongoose = require('mongoose');
+const app = express();
+app.use(express.json());
+const alienRouter = require('./alienrouter.js');
+const URL = 'mongodb://localhost/AlienDB';
+mongoose.connect(URL, { useNewUrlParser: true });
+const con = mongoose.connection;
+con.on('open', () => console.log('connected'));
+app.get('/aliens', alienRouter);
+app.post('/aliens', alienRouter);
+app.get('/alien/:id', alienRouter);
+app.patch('/alien/:id', alienRouter);
+app.delete('/alien/:id', alienRouter);
+app.listen(8000);
